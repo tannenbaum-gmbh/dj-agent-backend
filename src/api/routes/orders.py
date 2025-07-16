@@ -4,15 +4,15 @@ from typing import List
 from src.core.database import get_db
 from src.models.database import Order as DBOrder
 from src.models.schemas import OrderCreate, Order
-from src.services.order_service import OrderProcessingService
+from src.services.order_service_fixed import OrderProcessingServiceFixed
 
 router = APIRouter()
 
 @router.post("/", response_model=Order)
 async def create_order(order_data: OrderCreate, db: Session = Depends(get_db)):
-    """Create a new order"""
+    """Create a new order with race condition protection"""
     try:
-        service = OrderProcessingService(db)
+        service = OrderProcessingServiceFixed(db)
         order = await service.process_order(order_data)
         return order
     except ValueError as e:

@@ -4,7 +4,7 @@ from typing import List
 from src.core.database import get_db
 from src.models.database import InventoryItem as DBInventoryItem
 from src.models.schemas import InventoryItem, InventoryItemCreate, InventoryItemUpdate
-from src.services.order_service import OrderProcessingService
+from src.services.order_service_fixed import OrderProcessingServiceFixed
 
 router = APIRouter()
 
@@ -59,5 +59,5 @@ async def update_inventory_item(
 @router.get("/status/debug")
 async def get_inventory_status(db: Session = Depends(get_db)):
     """Get inventory status for debugging race conditions"""
-    service = OrderProcessingService(db)
+    service = OrderProcessingServiceFixed(db)
     return service.get_inventory_status()

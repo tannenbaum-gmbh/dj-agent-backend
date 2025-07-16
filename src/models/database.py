@@ -15,6 +15,7 @@ class InventoryItem(Base):
     description = Column(String)
     price = Column(Float, nullable=False)
     quantity_available = Column(Integer, nullable=False, default=0)
+    version = Column(Integer, nullable=False, default=1)  # For optimistic locking
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
