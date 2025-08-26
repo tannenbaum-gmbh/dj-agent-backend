@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: dj-agent-backend-base
+  namespace: dj-agent
+
+resources:
+  - namespace-config.yaml
+  - secrets.yaml
+  - rbac.yaml
+  - deployment.yaml
+  - service.yaml
+  - autoscaling.yaml
+  - postgresql.yaml
+  - redis.yaml
+  - network-policies.yaml
+  - ingress.yaml
+  - monitoring.yaml
+
+labels:
+  - pairs:
+      app.kubernetes.io/instance: dj-agent-backend
+      app.kubernetes.io/managed-by: kustomize
+
+images:
+  - name: dj-agent-backend
+    newTag: latest

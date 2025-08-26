@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dj-agent-backend
+  namespace: dj-agent
+  labels:
+    app.kubernetes.io/name: dj-agent-backend
+    app.kubernetes.io/component: api
+    app.kubernetes.io/part-of: dj-agent-platform
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+    protocol: TCP
+  - name: metrics
+    port: 9090
+    targetPort: metrics
+    protocol: TCP
+  selector:
+    app.kubernetes.io/name: dj-agent-backend
+    app.kubernetes.io/component: api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dj-agent-backend-headless
+  namespace: dj-agent
+  labels:
+    app.kubernetes.io/name: dj-agent-backend
+    app.kubernetes.io/component: api
+    app.kubernetes.io/part-of: dj-agent-platform
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+    protocol: TCP
+  selector:
+    app.kubernetes.io/name: dj-agent-backend
+    app.kubernetes.io/component: api

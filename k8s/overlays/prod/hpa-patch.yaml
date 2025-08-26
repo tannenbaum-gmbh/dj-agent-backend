@@ -1,0 +1,7 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: dj-agent-backend-hpa
+spec:
+  minReplicas: 5
+  maxReplicas: 50
