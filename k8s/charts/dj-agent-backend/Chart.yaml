@@ -1,0 +1,31 @@
+apiVersion: v2
+name: dj-agent-backend
+description: A Helm chart for DJ Agent Backend - AI Recommendation Engine
+version: 1.0.0
+appVersion: "1.0.0"
+type: application
+
+keywords:
+  - dj
+  - ai
+  - recommendation
+  - backend
+  - fastapi
+
+home: https://github.com/tannenbaum-gmbh/dj-agent-backend
+sources:
+  - https://github.com/tannenbaum-gmbh/dj-agent-backend
+
+maintainers:
+  - name: tannenbaum-gmbh
+    email: contact@tannenbaum-gmbh.example.com
+
+dependencies:
+  - name: postgresql
+    version: 12.x.x
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: redis
+    version: 18.x.x
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled

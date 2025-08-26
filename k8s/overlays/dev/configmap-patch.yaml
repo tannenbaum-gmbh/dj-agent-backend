@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dj-agent-config
+data:
+  ENVIRONMENT: "development"
+  LOG_LEVEL: "DEBUG"
